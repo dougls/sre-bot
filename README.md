@@ -1,5 +1,7 @@
 # sre-bot
 Projeto usado no TDC Summit IA SP - 23/04/2026
+
+```
 .
 ├── README.md
 ├── bot
@@ -17,4 +19,4 @@ Projeto usado no TDC Summit IA SP - 23/04/2026
     ├── deploy-notok.yaml
     ├── deploy-ok.yaml
     └── secret.yaml
-
+```
