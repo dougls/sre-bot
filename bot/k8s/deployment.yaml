@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sre-bot
+spec:
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: sre-bot
+  template:
+    metadata: 
+      labels: 
+        app: sre-bot
+    spec:
+      serviceAccountName: sre-ai-bot
+      containers:
+      - name: bot
+        image: tdc-sre-bot:latest
+        imagePullPolicy: Never
+        resources:
+          requests:
+            cpu: "50m"
+            memory: "128Mi"
+          limits:
+            cpu: "200m"
+            memory: "256Mi"
+        env:
+        - name: GEMINI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: gemini-secret
+              key: GEMINI_API_KEY
+        - name: SLACK_WEBHOOK_URL
+          valueFrom:
+            secretKeyRef:
+              name: gemini-secret
+              key: SLACK_WEBHOOK_URL
